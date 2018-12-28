@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -8,6 +7,36 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import { Form, HasError, AlertError } from 'vform';
+import VueRouter from 'vue-router';
+
+window.Form = Form; //registered globally, therefore can be accessed from anywhere
+
+Vue.use(VueRouter);
+Vue.component(HasError.name, HasError);
+Vue.component(AlertError.name, AlertError);
+
+let routes = [{
+        name: 'dashboard',
+        path: '/dashboard',
+        component: require('./components/Dashboard.vue').default
+    },
+    {
+        name: 'profile',
+        path: '/profile',
+        component: require('./components/Profile.vue').default
+    },
+    {
+        name: 'users',
+        path: '/users',
+        component: require('./components/Users.vue').default
+    }
+];
+
+const router = new VueRouter({
+    mode: 'history',
+    routes
+});
 
 /**
  * The following block of code may be used to automatically register your
@@ -29,5 +58,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    router
 });

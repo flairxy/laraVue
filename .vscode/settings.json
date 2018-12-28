@@ -1,0 +1,4 @@
+{
+    "prettier.tabWidth": 8,
+    "vetur.format.defaultFormatter.html": "none",
+}
